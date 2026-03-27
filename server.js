@@ -1,6 +1,13 @@
 const express = require('express')
 const app = express()
+<<<<<<< HEAD
 const PORT = 6666
+=======
+const cors = require('cors')
+const PORT = 8000
+>>>>>>> ef5e76a401f0ab46fb13838d6c720c125e21350b
+
+app.use(cors())
 
 const terpeneData = {
     'unknown': {
@@ -48,6 +55,6 @@ app.get('/api/:name', (request, response) => {
     }
 })
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || PORT, () => {
     console.log(`The server is now running on port: ${PORT}.`)
 })
