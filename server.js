@@ -1,11 +1,7 @@
 const express = require('express')
 const app = express()
-<<<<<<< HEAD
-const PORT = 6666
-=======
 const cors = require('cors')
-const PORT = 8000
->>>>>>> ef5e76a401f0ab46fb13838d6c720c125e21350b
+const PORT = 6666
 
 app.use(cors())
 
