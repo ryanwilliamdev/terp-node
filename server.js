@@ -2,11 +2,16 @@ const path = require('path')
 const express = require('express')
 const dotenv = require('dotenv')
 const morgan = require('morgan')
-const { engine } = require("express-handlebars")
+const { engine } = require('express-handlebars')
+const passport = require('passport')
+const session = require('express-session')
 const connectDB = require('./config/db')
 
 // Load config
 dotenv.config({ path: './config/config.env' })
+
+// Passport config
+require('./config/passport')(passport)
 
 const PORT = process.env.PORT || 3000
 const app = express()
@@ -28,6 +33,17 @@ app.engine(
     })
 )
 app.set('view engine', 'hbs')
+
+// Sessions middleware *** Must be above Passport middleware ***
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
+}))
+
+// Passport middleware
+app.use(passport.initialize())
+app.use(passport.session())
 
 // Static folder
 app.use(express.static(path.join(__dirname, 'public')))
