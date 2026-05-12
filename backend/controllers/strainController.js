@@ -8,8 +8,8 @@ export const addAStrain = async (req, res) => { // CREATE
 
 export const updateAStrain = async (req, res) => { // UPDATE
     await res.status(200).json({ message: 'Strain updated successfully!' });
-}
+};
 
 export const deleteAStrain = async (req, res) => { // DELETE
     await res.status(200).json({ message: 'Strain deleted successfully!' });
-}
+};
