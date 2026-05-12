@@ -1,10 +1,11 @@
 import express from 'express';
+import strainRoutes from './routes/strainRoutes.js';
 
 const app = express();
 
-app.get('/api/strains', (req, res) => {
-    res.status(200).send('No strains added so far.');
-});
+app.use('/api/strains', strainRoutes);
+
+
 
 app.listen(3000, () => {
     console.log('Server started on PORT: 3000');
