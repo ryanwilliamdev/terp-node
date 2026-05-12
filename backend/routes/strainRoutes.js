@@ -1,11 +1,11 @@
 import express from 'express';
-import { addAStrain, getAllStrains, updateAStrain, deleteAStrain } from '../controllers/strainController.js';
+import { addStrain, getAllStrains, updateStrain, deleteStrain } from '../controllers/strainController.js';
 
 const router = express.Router();
 
 router.get('/', getAllStrains);
-router.post('/', addAStrain);
-router.put('/:id', updateAStrain);
-router.delete('/:id', deleteAStrain);
+router.post('/', addStrain);
+router.put('/:id', updateStrain);
+router.delete('/:id', deleteStrain);
 
 export default router;
