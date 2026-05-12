@@ -9,8 +9,6 @@ router.post('/', addAStrain);
 
 router.put('/:id', updateAStrain);
 
-router.delete('/:id', (req, res) => { // DELETE
-    res.status(200).json({ message: 'Strain deleted successfully!' });
-});
+router.delete('/:id', deleteAStrain);
 
 export default router
