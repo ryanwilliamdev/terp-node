@@ -1,27 +1,16 @@
 import express from 'express';
+import { getAllStrains } from '../controllers/strainController.js';
 
-const router = express.Router()
+const router = express.Router();
 
-router.get('/', (req, res) => { // READ
-    res.status(200).send('Here are your current favorite cannabis strains!');
+router.get('/', getAllStrains);
+
+router.post('/', addAStrain);
+
+router.put('/:id', updateAStrain);
+
+router.delete('/:id', (req, res) => { // DELETE
+    res.status(200).json({ message: 'Strain deleted successfully!' });
 });
-
-router.post('/', (req, res) => { // CREATE
-    res.status(201).json({ message: 'Strain added successfully!' })
-})
-
-router.put('/', (req, res) => { // UPDATE
-    res.status(200).json({ message: 'Strain updated successfully!' });
-});
-
-router.delete('/', (req, res) => { // DELETE
-    res.status(200).json({ message: 'Strain deleted successfully!' })
-})
 
 export default router
-
-
-
-// app.delete('/api/strains:id', (req, res) => { // DELETE
-//     res.status(200).json({ message: 'Strain deleted successfully!' });
-// });

@@ -6,7 +6,6 @@ const app = express();
 app.use('/api/strains', strainRoutes);
 
 
-
 app.listen(3000, () => {
     console.log('Server started on PORT: 3000');
 });
