@@ -6,11 +6,12 @@ import dotenv from 'dotenv'
 dotenv.config();
 
 const app = express();
+const PORT = process.env.PORT || 3000
 
 app.use('/api/strains', strainRoutes);
 
 connectDB();
 
-app.listen(3000, () => {
-    console.log('Server started on PORT: 3000');
+app.listen(PORT, () => {
+    console.log('Server started on PORT:', PORT);
 });
