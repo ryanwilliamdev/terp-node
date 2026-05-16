@@ -12,6 +12,18 @@ app.use('/api/strains', strainRoutes);
 
 connectDB();
 
+// MIDDLEWARE
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// ROUTES
+app.use('/api/strains', strainRoutes);
+
+// ERROR HANDLING
+app.use((err, req, res, next) => {
+    console.error('Error:', err);
+    res.status(500).json({ message: 'Internal server error' });
+});
 app.listen(PORT, () => {
     console.log('Server started on PORT:', PORT);
 });
