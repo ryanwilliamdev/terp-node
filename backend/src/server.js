@@ -11,12 +11,14 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use("/api/strains", strainRoutes);
-
-// MIDDLEWARE
+// MIDDLEWARE (CORS and parsers must run before routes)
+app.use(
+    cors({
+        origin: "http://localhost:5173",
+    }),
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
 app.use(rateLimiter);
 app.use((req, res, next) => {
     console.log(
