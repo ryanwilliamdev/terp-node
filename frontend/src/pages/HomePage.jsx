@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { TableRowsSplit } from "lucide-react";
 
 const HomePage = () => {
-    const [isRateLimited, setRateLimited] = useState(false);
+    const [isRateLimited, setIsRateLimited] = useState(false);
     const [strains, setStrains] = useState([]);
     const [loading, setLoading] = useState(true);
 
