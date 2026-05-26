@@ -39,7 +39,7 @@ const strainNoteSchema = new mongoose.Schema(
         },
     },
     { timestamps: true },
-); // createdAt and updatedAt
+);
 
 const Strain = mongoose.model("Strain", strainSchema);
 const StrainNote = mongoose.model("StrainNote", strainNoteSchema);
