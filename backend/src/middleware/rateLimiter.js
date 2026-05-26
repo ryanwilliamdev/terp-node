@@ -1,14 +1,14 @@
-import ratelimit from '../config/upstash.js';
+import ratelimit from "../config/upstash.js";
 
 const rateLimiter = async (req, res, next) => {
     try {
         const { success } = await ratelimit.limit(req.ip);
         if (!success) {
-            return res.status(429).json({ message: 'Too many requests' });
+            return res.status(429).json({ message: "Too many requests" });
         }
         next();
     } catch (error) {
-        console.error('Error in rateLimiter middleware:', error);
+        console.error("Error in rateLimiter middleware:", error);
         next(error);
     }
 };
