@@ -20,6 +20,11 @@ const strainSchema = new mongoose.Schema(
             required: true,
             default: [],
         },
+        description: {
+            type: String,
+            required: false,
+            default: "",
+        },
     },
     { timestamps: true }, // createdAt, updatedAt
 );
