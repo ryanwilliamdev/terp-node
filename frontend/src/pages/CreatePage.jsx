@@ -7,6 +7,7 @@ const CreatePage = () => {
     const [type, setType] = useState("");
     const [cultivator, setCultivator] = useState("");
     const [terpenes, setTerpenes] = useState([]);
+    const [description, setDescription] = useState("");
     const [loading, setLoading] = useState(false);
 
     const terpeneOptions = [
@@ -121,6 +122,21 @@ const CreatePage = () => {
                                                 </span>
                                             </label>
                                         ))}
+                                    </div>
+                                    <div className="form-control mb-4">
+                                        <label className="label">
+                                            <span className="label-text">
+                                                Description
+                                            </span>
+                                        </label>
+                                        <textarea
+                                            placeholder="Describe how this strain made you feel!"
+                                            className="textarea textarea-bordered h-32"
+                                            value={description}
+                                            onChange={(e) =>
+                                                setContent(e.target.value)
+                                            }
+                                        />
                                     </div>
                                 </div>
                             </form>
