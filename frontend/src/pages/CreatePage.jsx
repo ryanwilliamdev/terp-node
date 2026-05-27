@@ -1,8 +1,11 @@
 import { ArrowLeftIcon } from "lucide-react";
-import React, { useState } from "react";
-import { Link } from "react-router";
+import { useState } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router";
 
 const CreatePage = () => {
+    const navigate = useNavigate();
     const [name, setName] = useState("");
     const [type, setType] = useState("");
     const [cultivator, setCultivator] = useState("");
@@ -27,7 +30,31 @@ const CreatePage = () => {
         );
     };
 
-    const handleSubmit = () => {};
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+
+        try {
+            await axios.post("http://localhost:3000/api/strains", {
+                name,
+                type,
+                cultivator,
+                terpenes,
+                description,
+            });
+
+            toast.success("Strain created!");
+            navigate("/");
+        } catch (error) {
+            console.error("Error creating strain:", error);
+            toast.error(
+                error.response?.data?.message ??
+                    "Failed to create strain."
+            );
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <div className="min-h-screen bg-base-200">
@@ -134,10 +161,21 @@ const CreatePage = () => {
                                             className="textarea textarea-bordered h-32"
                                             value={description}
                                             onChange={(e) =>
-                                                setContent(e.target.value)
+                                                setDescription(e.target.value)
                                             }
                                         />
                                     </div>
+                                </div>
+                                <div className="form-control mt-6">
+                                    <button
+                                        type="submit"
+                                        className="btn btn-primary"
+                                        disabled={loading}
+                                    >
+                                        {loading
+                                            ? "Creating..."
+                                            : "Create Strain"}
+                                    </button>
                                 </div>
                             </form>
                         </div>
