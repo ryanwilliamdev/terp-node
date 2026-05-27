@@ -12,8 +12,7 @@ const StrainCard = ({ strain }) => {
             <div className="card-body">
                 <h3 className="card-title text-base-content">{strain.name}</h3>
                 <p className="text-base-content/70 line-clamp-3">
-                    {strain.type} | {strain.cultivator} | {strain.terpenes} |{" "}
-                    {strain.flavor}
+                    {strain.type} | {strain.cultivator} | {strain.terpenes}
                 </p>
                 <div className="card-actions justify-between items-center mt-4">
                     <span className="text-sm text-base-content/60">
