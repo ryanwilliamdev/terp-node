@@ -48,13 +48,12 @@ export const getAllStrainNotes = async (req, res) => {
 export const addStrain = async (req, res) => {
     // CREATE
     try {
-        const { name, type, cultivator, terpenes, flavor } = req.body;
+        const { name, type, cultivator, terpenes } = req.body;
         const strain = await Strain.create({
             name,
             type,
             cultivator,
             terpenes,
-            flavor,
         });
         res.status(201).json(strain);
     } catch (error) {
@@ -82,10 +81,10 @@ export const updateStrain = async (req, res) => {
     // UPDATE
     try {
         const { id } = req.params;
-        const { name, type, cultivator, terpenes, flavor } = req.body;
+        const { name, type, cultivator, terpenes } = req.body;
         const strain = await Strain.findByIdAndUpdate(
             id,
-            { name, type, cultivator, terpenes, flavor },
+            { name, type, cultivator, terpenes },
             { new: true },
         );
         if (!strain) {
