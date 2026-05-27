@@ -48,8 +48,7 @@ const CreatePage = () => {
         } catch (error) {
             console.error("Error creating strain:", error);
             toast.error(
-                error.response?.data?.message ??
-                    "Failed to create strain."
+                error.response?.data?.message ?? "Failed to create strain.",
             );
         } finally {
             setLoading(false);
@@ -169,7 +168,7 @@ const CreatePage = () => {
                                 <div className="form-control mt-6">
                                     <button
                                         type="submit"
-                                        className="btn btn-primary"
+                                        className="btn btn-success"
                                         disabled={loading}
                                     >
                                         {loading
