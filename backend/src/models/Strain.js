@@ -9,18 +9,16 @@ const strainSchema = new mongoose.Schema(
         type: {
             type: String,
             required: true,
+            enum: ["Sativa", "Hybrid", "Indica"],
         },
         cultivator: {
             type: String,
             required: true,
         },
         terpenes: {
-            type: String,
+            type: [String],
             required: true,
-        },
-        flavor: {
-            type: String,
-            required: true,
+            default: [],
         },
     },
     { timestamps: true }, // createdAt, updatedAt
