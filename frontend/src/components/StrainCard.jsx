@@ -1,5 +1,4 @@
 import { PenSquareIcon, Trash2Icon } from "lucide-react";
-import React from "react";
 import { Link } from "react-router";
 import { formatDate } from "../lib/utils";
 
@@ -14,6 +13,11 @@ const StrainCard = ({ strain }) => {
                 <p className="text-base-content/70 line-clamp-3">
                     {strain.type} | {strain.cultivator} | {strain.terpenes}
                 </p>
+                {strain.description ? (
+                    <p className="text-base-content/70 line-clamp-2 mt-2">
+                        {strain.description}
+                    </p>
+                ) : null}
                 <div className="card-actions justify-between items-center mt-4">
                     <span className="text-sm text-base-content/60">
                         {formatDate(new Date(strain.createdAt))}
