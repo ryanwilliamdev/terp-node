@@ -30,7 +30,7 @@ const HomePage = () => {
                 }
             } finally {
                 setLoading(false);
-            }
+            };
         };
 
         fetchStrains();
