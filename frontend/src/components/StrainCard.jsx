@@ -2,16 +2,20 @@ import { PenSquareIcon, Trash2Icon } from "lucide-react";
 import { Link } from "react-router";
 import { formatDate } from "../lib/utils";
 import api from "../lib/axios";
+import toast from "react-hot-toast";
 
-const StrainCard = ({ strain }) => {
+const StrainCard = ({ strain, setStrains }) => {
     const handleDelete = async (e, _id) => {
         e.preventDefault(); // prevent the default form submission behavior
         if (!window.confirm("Are you sure you want to delete this strain?"))
             return;
         try {
             await api.delete(`/strains/${_id}`);
+            setStrains((prev) => prev.filter((strain) => strain._id !== _id));
+            toast.success("Strain deleted successfully!");
         } catch (error) {
-            console.error("Error deleting strain:", error);
+            console.log("Error in handleDelete:", error);
+            toast.error("Failed to delete strain.");
         }
     };
     return (
