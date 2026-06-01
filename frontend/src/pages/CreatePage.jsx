@@ -56,9 +56,19 @@ const CreatePage = () => {
             navigate("/");
         } catch (error) {
             console.error("Error creating strain:", error);
-            toast.error(
-                error.response?.data?.message ?? "Failed to create strain.",
-            );
+            if (error.response?.status === 429) {
+                toast.error(
+                    "You are submitting too many requests. Please try again later.",
+                    {
+                        duration: 5000,
+                        position: "top-center",
+                    },
+                );
+            } else {
+                toast.error("Failed to create strain.", {
+                    duration: 5000,
+                });
+            }
         } finally {
             setLoading(false);
         }
