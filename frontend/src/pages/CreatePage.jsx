@@ -1,6 +1,6 @@
 import { ArrowLeftIcon } from "lucide-react";
 import { useState } from "react";
-import axios from "axios";
+import api from "../lib/axios";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router";
 
@@ -44,7 +44,7 @@ const CreatePage = () => {
         setLoading(true);
 
         try {
-            await axios.post("http://localhost:3000/api/strains", {
+            await api.post("/strains", {
                 name,
                 type,
                 cultivator,
