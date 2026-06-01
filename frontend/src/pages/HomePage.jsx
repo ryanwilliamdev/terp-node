@@ -1,11 +1,11 @@
 import { useState } from "react";
-import Navbar from "../components/Navbar";
-import RateLimitedUI from "../components/RateLimitedUI";
-import StrainCard from "../components/StrainCard";
 import { useEffect } from "react";
+import { TableRowsSplit } from "lucide-react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { TableRowsSplit } from "lucide-react";
+import StrainCard from "../components/StrainCard";
+import RateLimitedUI from "../components/RateLimitedUI";
+import Navbar from "../components/Navbar";
 
 const HomePage = () => {
     const [isRateLimited, setIsRateLimited] = useState(false);
