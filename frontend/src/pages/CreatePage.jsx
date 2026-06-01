@@ -32,6 +32,15 @@ const CreatePage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (
+            !name.trim() ||
+            !type.trim() ||
+            !cultivator.trim() ||
+            terpenes.length === 0
+        ) {
+            toast.error("Please fill in all fields.");
+            return;
+        }
         setLoading(true);
 
         try {
@@ -43,7 +52,7 @@ const CreatePage = () => {
                 description,
             });
 
-            toast.success("Strain created!");
+            toast.success("Strain created successfully!");
             navigate("/");
         } catch (error) {
             console.error("Error creating strain:", error);
@@ -165,7 +174,7 @@ const CreatePage = () => {
                                         />
                                     </div>
                                 </div>
-                                <div className="form-control mt-6">
+                                <div className="card-actions justify-end">
                                     <button
                                         type="submit"
                                         className="btn btn-success"
