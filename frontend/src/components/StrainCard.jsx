@@ -1,8 +1,19 @@
 import { PenSquareIcon, Trash2Icon } from "lucide-react";
 import { Link } from "react-router";
 import { formatDate } from "../lib/utils";
+import api from "../lib/axios";
 
 const StrainCard = ({ strain }) => {
+    const handleDelete = async (e, _id) => {
+        e.preventDefault(); // prevent the default form submission behavior
+        if (!window.confirm("Are you sure you want to delete this strain?"))
+            return;
+        try {
+            await api.delete(`/strains/${_id}`);
+        } catch (error) {
+            console.error("Error deleting strain:", error);
+        }
+    };
     return (
         <Link
             to={`/strain/${strain._id}`}
@@ -24,7 +35,10 @@ const StrainCard = ({ strain }) => {
                     </span>
                     <div className="flex items-center gap-1">
                         <PenSquareIcon className="size-4" />
-                        <button className="btn btn-ghost btn-xs text-error">
+                        <button
+                            className="btn btn-ghost btn-xs text-error"
+                            onClick={(e) => handleDelete(e, strain._id)}
+                        >
                             <Trash2Icon className="size-4" />
                         </button>
                     </div>
