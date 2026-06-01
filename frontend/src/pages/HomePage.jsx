@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { TableRowsSplit } from "lucide-react";
-import axios from "axios";
+import api from "../lib/axios";
 import toast from "react-hot-toast";
 import StrainCard from "../components/StrainCard";
 import RateLimitedUI from "../components/RateLimitedUI";
@@ -15,9 +15,7 @@ const HomePage = () => {
     useEffect(() => {
         const fetchStrains = async () => {
             try {
-                const res = await axios.get(
-                    "http://localhost:3000/api/strains",
-                );
+                const res = await api.get("/strains");
                 console.log(res.data);
                 setStrains(res.data);
                 setIsRateLimited(false);
@@ -30,7 +28,7 @@ const HomePage = () => {
                 }
             } finally {
                 setLoading(false);
-            };
+            }
         };
 
         fetchStrains();
