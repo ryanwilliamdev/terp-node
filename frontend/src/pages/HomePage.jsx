@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { TableRowsSplit } from "lucide-react";
-import StrainsNotFound from "../components/StrainsNotFound";
 import api from "../lib/axios";
 import toast from "react-hot-toast";
 import StrainCard from "../components/StrainCard";
+import StrainsNotFound from "../components/StrainsNotFound";
 import RateLimitedUI from "../components/RateLimitedUI";
 import Navbar from "../components/Navbar";
 
