@@ -4,7 +4,7 @@ import { addStrain, getAllStrains, updateStrain, deleteStrain } from '../control
 const router = express.Router();
 
 router.get('/', getAllStrains);
-// router.get('/:id', getStrainById);
+// router.get('/:id', getStrainById)
 router.post('/', addStrain);
 router.put('/:id', updateStrain);
 router.delete('/:id', deleteStrain);
