@@ -1,6 +1,7 @@
 import { PenSquareIcon, Trash2Icon } from "lucide-react";
 import { Link } from "react-router";
 import { formatDate } from "../lib/utils";
+import { getTerpeneStyle } from "../lib/terpeneColors";
 import api from "../lib/axios";
 import toast from "react-hot-toast";
 
@@ -26,8 +27,21 @@ const StrainCard = ({ strain, setStrains }) => {
             <div className="card-body">
                 <h3 className="card-title text-base-content">{strain.name}</h3>
                 <p className="text-base-content/70 line-clamp-3">
-                    {strain.type} | {strain.cultivator} | {strain.terpenes}
+                    {strain.type} | {strain.cultivator}
                 </p>
+                {strain.terpenes?.length > 0 ? (
+                    <div className="flex flex-wrap gap-1 mt-2">
+                        {strain.terpenes.map((terpene) => (
+                            <span
+                                key={terpene}
+                                className="badge badge-md border-none font-semibold"
+                                style={getTerpeneStyle(terpene)}
+                            >
+                                {terpene}
+                            </span>
+                        ))}
+                    </div>
+                ) : null}
                 {strain.description ? (
                     <p className="text-base-content/70 line-clamp-2 mt-2">
                         {strain.description}
