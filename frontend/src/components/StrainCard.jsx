@@ -34,7 +34,7 @@ const StrainCard = ({ strain, setStrains }) => {
                         {strain.terpenes.map((terpene) => (
                             <span
                                 key={terpene}
-                                className="badge badge-md border-none font-semibold"
+                                className="badge badge-md border border-base-content/20 rounded-md"
                                 style={getTerpeneStyle(terpene)}
                             >
                                 {terpene}
