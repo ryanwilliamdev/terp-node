@@ -6,7 +6,6 @@ import { ArrowLeftIcon, LoaderIcon, Trash2Icon } from "lucide-react";
 
 const StrainDetailPage = () => {
     const navigate = useNavigate();
-    const [strain, setStrain] = useState(null);
     const [name, setName] = useState("");
     const [type, setType] = useState("");
     const [cultivator, setCultivator] = useState("");
@@ -32,11 +31,17 @@ const StrainDetailPage = () => {
                 : [...prev, terpene],
         );
     };
+
     useEffect(() => {
         const fetchStrain = async () => {
             try {
                 const res = await api.get(`/strains/${id}`);
-                setStrain(res.data);
+                const strain = res.data;
+                setName(strain.name || "");
+                setType(strain.type || "");
+                setCultivator(strain.cultivator || "");
+                setTerpenes(strain.terpenes || []);
+                setDescription(strain.description || "");
             } catch (error) {
                 console.log("Error fetching strain:", error);
                 toast.error("Failed to load strain.");
@@ -63,10 +68,10 @@ const StrainDetailPage = () => {
 
     const handleSave = async () => {
         if (
-            !strain.name.trim() ||
-            !strain.type.trim() ||
-            !strain.cultivator.trim() ||
-            !strain.description.trim()
+            !name.trim() ||
+            !type.trim() ||
+            !cultivator.trim() ||
+            terpenes.length === 0
         ) {
             toast.error("Please fill out all fields");
             return;
@@ -75,7 +80,13 @@ const StrainDetailPage = () => {
         setSaving(true);
 
         try {
-            await api.put(`/strains/${id}`, strain);
+            await api.put(`/strains/${id}`, {
+                name,
+                type,
+                cultivator,
+                terpenes,
+                description,
+            });
             toast.success("Strain updated successfully");
             navigate("/");
         } catch (error) {
@@ -93,6 +104,7 @@ const StrainDetailPage = () => {
             </div>
         );
     }
+
     return (
         <div className="min-h-screen bg-base-200">
             <div className="container mx-auto px-4 py-8">
@@ -121,7 +133,7 @@ const StrainDetailPage = () => {
                                     type="text"
                                     placeholder="Strain Name"
                                     className="input input-bordered"
-                                    value={strain.name}
+                                    value={name}
                                     onChange={(e) => setName(e.target.value)}
                                 />
                             </div>
@@ -133,7 +145,7 @@ const StrainDetailPage = () => {
                                 </label>
                                 <select
                                     className="select select-bordered text-base"
-                                    value={strain.type}
+                                    value={type}
                                     onChange={(e) => setType(e.target.value)}
                                 >
                                     <option value="" disabled>
@@ -154,7 +166,7 @@ const StrainDetailPage = () => {
                                     type="text"
                                     placeholder="Strain Cultivator"
                                     className="input input-bordered"
-                                    value={strain.cultivator}
+                                    value={cultivator}
                                     onChange={(e) =>
                                         setCultivator(e.target.value)
                                     }
@@ -186,21 +198,21 @@ const StrainDetailPage = () => {
                                         </label>
                                     ))}
                                 </div>
-                                <div className="form-control mb-4">
-                                    <label className="label">
-                                        <span className="label-text">
-                                            Description
-                                        </span>
-                                    </label>
-                                    <textarea
-                                        placeholder="Describe how this strain made you feel!"
-                                        className="textarea textarea-bordered h-32"
-                                        value={description}
-                                        onChange={(e) =>
-                                            setDescription(e.target.value)
-                                        }
-                                    />
-                                </div>
+                            </div>
+                            <div className="form-control mb-4">
+                                <label className="label">
+                                    <span className="label-text">
+                                        Description
+                                    </span>
+                                </label>
+                                <textarea
+                                    placeholder="Describe how this strain made you feel!"
+                                    className="textarea textarea-bordered h-32"
+                                    value={description}
+                                    onChange={(e) =>
+                                        setDescription(e.target.value)
+                                    }
+                                />
                             </div>
                             <div className="card-actions justify-end">
                                 <button
