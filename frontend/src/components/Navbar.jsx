@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { PlusIcon } from "lucide-react";
+import { PlusIcon, Cannabis } from "lucide-react";
 
 const Navbar = () => {
     return (
@@ -7,7 +7,12 @@ const Navbar = () => {
             <div className="mx-auto max-w-6xl p-4">
                 <div className="flex items-center justify-between">
                     <h1 className="text-3xl font-bold text-success font-mono tracking-tight">
-                        <Link to={"/"}>TerpNode</Link>
+                        <Link
+                            to={"/"}
+                            className="inline-flex items-center gap-2"
+                        >
+                            <Cannabis className="size-8" /> TerpNode
+                        </Link>
                     </h1>
                     <div className="flex items-center gap-4">
                         <Link to={"/create"} className="btn btn-success">
