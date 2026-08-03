@@ -7,7 +7,7 @@ const Navbar = () => {
             <div className="mx-auto max-w-6xl p-4">
                 <div className="flex items-center justify-between">
                     <h1 className="text-3xl font-bold text-success font-mono tracking-tight">
-                        TerpNode
+                        <Link to={"/"}>TerpNode</Link>
                     </h1>
                     <div className="flex items-center gap-4">
                         <Link to={"/create"} className="btn btn-success">
